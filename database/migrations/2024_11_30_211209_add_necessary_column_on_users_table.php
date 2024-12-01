@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('npwpd')->nullable();
             $table->string('nohp')->nullable();
             $table->string('fotopengguna')->nullable();
-            $table->boolean('statusaktif')->default(1)->nullable();
-            $table->string('statuslogin')->nullable();
+            $table->boolean('statusaktif')->default(1);
+            $table->boolean('statuslogin')->default(0);
         });
     }
 

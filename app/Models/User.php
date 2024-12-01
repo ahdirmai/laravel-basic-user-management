@@ -22,6 +22,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nik',
+        'npwpd',
+        'nohp',
+        'fotopengguna',
+        'statusaktif',
+        'statuslogin',
     ];
 
     /**
