@@ -18,6 +18,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    {{-- custom styles --}}
+    @stack('styles')
 
 </head>
 
@@ -80,6 +82,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+    {{-- custom scripts --}}
+    @stack('scripts')
 
 </body>
 

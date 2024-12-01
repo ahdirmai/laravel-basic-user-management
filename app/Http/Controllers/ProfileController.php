@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -26,13 +27,34 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Fill the existing fields
+        $user->fill($request->validated());
+
+        // Handle email verification
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        // Handle additional fields
+        $user->nik = $request->input('nik');
+        $user->npwpd = $request->input('npwpd');
+        $user->nohp = $request->input('nohp');
+
+        // Handle file upload for user photo
+        if ($request->hasFile('fotopengguna')) {
+            // Delete old photo if exists
+            if ($user->fotopengguna) {
+                Storage::delete('public/' . $user->fotopengguna);
+            }
+
+            // Store new photo
+            $photoPath = $request->file('fotopengguna')->store('user-photos', 'public');
+            $user->fotopengguna = $photoPath;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -47,6 +69,11 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        // Delete user's photo if exists
+        if ($user->fotopengguna) {
+            Storage::delete('public/' . $user->fotopengguna);
+        }
 
         Auth::logout();
 
