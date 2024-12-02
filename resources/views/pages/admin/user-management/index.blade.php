@@ -95,6 +95,15 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            {{-- pagination --}}
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="d-flex justify-content-center">
+                                            {{ $users->links() }}
+                                        </div>
+                                    </td>
+                                </tr>
                         </table>
                     </div>
                     @if($users->isEmpty())

@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('pages.dashboard');
+    return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -31,10 +31,6 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'role:administrator
     });
 });
 
-//   'administrator',
-//             'bendahara',
-//             'wajib pajak',
-//             'pemungut pajak'
 
 Route::prefix('/bendahara')->name('bendahara.')->middleware(['auth', 'role:bendahara'])->group(function () {
     // users feature

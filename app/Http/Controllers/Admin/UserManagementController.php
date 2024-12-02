@@ -14,7 +14,7 @@ class UserManagementController extends Controller
     public function index()
     {
         // Ambil semua data pengguna
-        $users = User::all();
+        $users = User::paginate(3);
         return view('pages.admin.user-management.index', ['users' => $users]);
     }
 
@@ -102,6 +102,7 @@ class UserManagementController extends Controller
     {
         $rules = [
             'name' => 'required|string|max:255',
+            'nik' => ['size:18', 'regex:/^\d+$/'],
             'email' => 'required|email|unique:users,email,' . $userId, // Email unik kecuali untuk pengguna saat ini
             'password' => $userId ? 'nullable|min:6' : 'required|min:6', // Password opsional saat update
             'role' => 'required|exists:roles,name', // Role harus valid

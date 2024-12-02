@@ -23,13 +23,12 @@
 </head>
 
 <body class="bg-gradient-primary">
-
-    <div class="container">
+    <div class="container d-flex align-items-center justify-content-center min-vh-100">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center w-100">
 
-            <div class="col-md-6">
+            <div class="col-lg-8">
 
                 {{ $slot }}
 
