@@ -18,7 +18,7 @@
                             @csrf
 
                             <!-- Email Address -->
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <input type="email"
                                     class="form-control form-control-user @error('email') is-invalid @enderror"
                                     id="email" name="email" aria-describedby="emailHelp"
@@ -29,8 +29,20 @@
                                     {{ $message }}
                                 </div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
+                            <!--NIK-->
+                            <div class="form-group">
+                                <input type="nik"
+                                    class="form-control form-control-user @error('nik') is-invalid @enderror" id="nik"
+                                    name="nik" aria-describedby="nikHelp" placeholder="Masukkan nik..."
+                                    value="{{ old('nik') }}" required autofocus autocomplete="username">
+                                @error('nik')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
                             <!-- Password -->
                             <div class="form-group">
                                 <input type="password"
