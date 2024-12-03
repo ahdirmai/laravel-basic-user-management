@@ -18,7 +18,8 @@ class RoleSeeder extends Seeder
             'administrator',
             'bendahara',
             'wajib pajak',
-            'pemungut pajak'
+            'pemungut pajak',
+            'operator umum'
         ];
 
         foreach ($roles as $role) {

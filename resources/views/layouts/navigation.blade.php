@@ -154,7 +154,7 @@
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle"
-                    src="{{ Auth::user()->profile_photo_url ?? asset('img/default-profile.svg') }}">
+                    src="{{ Auth::user()->fotopengguna ? asset('storage/' . Auth::user()->fotopengguna): asset('img/default-profile.svg') }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

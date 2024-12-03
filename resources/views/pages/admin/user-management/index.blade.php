@@ -65,7 +65,9 @@
                             <tbody>
                                 @foreach ($users as $user)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <th scope="row">{{ ($users->currentPage() - 1) * $users->perPage() +$loop->iteration
+                                        }}
+                                    </th>
                                     <td>
                                         <img src="{{ $user->fotopengguna ? asset('storage/' . $user->fotopengguna) : asset('img/default-profile.svg') }}"
                                             alt="User Photo" class="rounded-circle" width="50" height="50">

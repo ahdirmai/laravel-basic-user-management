@@ -17,16 +17,13 @@
                     <div class="card-body">
                         <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if(isset($user))
-                            @method('PUT')
-                            @endif
+                            @method($method)
 
                             {{-- NIK Field --}}
                             <div class="form-group">
                                 <label for="nik">NIK</label>
                                 <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik"
-                                    name="nik" value="{{ old('nik', $user->nik ?? '') }}" placeholder="Enter NIK"
-                                    required>
+                                    name="nik" value="{{ old('nik', $user->nik ?? '') }}" placeholder="Enter NIK">
                                 @error('nik')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -48,7 +45,7 @@
                                 <label for="npwpd">NPWPD</label>
                                 <input type="text" class="form-control @error('npwpd') is-invalid @enderror" id="npwpd"
                                     name="npwpd" value="{{ old('npwpd', $user->npwpd ?? '') }}"
-                                    placeholder="Enter NPWPD" required>
+                                    placeholder="Enter NPWPD">
                                 @error('npwpd')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -61,6 +58,16 @@
                                     name="email" value="{{ old('email', $user->email ?? '') }}"
                                     placeholder="Enter email address" required>
                                 @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            {{-- No HP Field --}}
+                            <div class="form-group">
+                                <label for="nohp">No HP</label>
+                                <input type="text" class="form-control @error('nohp') is-invalid @enderror" id="nohp"
+                                    name="nohp" value="{{ old('nohp', $user->nohp ?? '') }}" placeholder="Enter No HP">
+                                @error('nohp')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -97,9 +104,9 @@
 
                             {{-- Photo Field --}}
                             <div class="form-group">
-                                <label for="photo">Photo</label>
-                                <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo"
-                                    name="photo" accept="image/*" onchange="previewImage()">
+                                <label for="fotopengguna">Photo</label>
+                                <input type="file" class="form-control @error('fotopengguna') is-invalid @enderror"
+                                    id="fotopengguna" name="fotopengguna" accept="image/*" onchange="previewImage()">
                                 @error('photo')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -125,7 +132,7 @@
     {{-- JavaScript for Preview --}}
     <script>
         function previewImage() {
-            const input = document.getElementById('photo');
+            const input = document.getElementById('fotopengguna');
             const preview = document.getElementById('photoPreview');
             const file = input.files[0];
 
